@@ -61,3 +61,11 @@ TAGS
 # user-supplied scripts
 #
 /embed
+
+# clang
+compile_commands.json
+
+# make install
+_install/
+rootfs.ext3
+rootfs.img.gz
