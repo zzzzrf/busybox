@@ -62,3 +62,19 @@ qemu
 	  -append "root=/dev/ram init=/linuxrc"  \
 	  -serial file:output.txt
 	
+Makefile
+PWD := $(shell pwd)
+BUSYBOX_PATH = $(PWD)/busybox
+LINUX_PATH = $(PWD)/linux
+QEMU = qemu-system-x86_64
+
+run :
+	$(QEMU) -S	\
+	  -kernel $(LINUX_PATH)/arch/x86_64/boot/bzImage \
+	  -initrd $(BUSYBOX_PATH)/rootfs.img.gz \
+	  -append "root=/dev/ram init=/linuxrc nokaslr"	\
+	  -device e1000,driver=e1000,netdev=eth1	\
+	  -netdev bridge,id=eth1,br=br1,helper=/usr/lib/qemu/qemu-bridge-helper
+
+kernel :
+	make -C  $(LINUX_PATH) -j8
