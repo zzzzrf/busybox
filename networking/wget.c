@@ -9,7 +9,7 @@
  * Kuhn's copyrights are licensed GPLv2-or-later.  File as a whole remains GPLv2.
  */
 //config:config WGET
-//config:	bool "wget (38 kb)"
+//config:	bool "wget (41 kb)"
 //config:	default y
 //config:	help
 //config:	wget is a utility for non-interactive download of files from HTTP
@@ -1602,7 +1602,7 @@ IF_DESKTOP(	"no-parent\0"        No_argument       "\xf0")
 			bit = 1;
 			words = wget_user_headers;
 			while (*words) {
-				if (strstr(hdr, words) == hdr) {
+				if (strcasestr(hdr, words) == hdr) {
 					G.user_headers |= bit;
 					break;
 				}
